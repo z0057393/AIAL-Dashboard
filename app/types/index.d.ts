@@ -12,11 +12,14 @@ export interface User {
   location: string
 }
 
-export interface Member {
+export type ExtensionStatus = 'active' | 'inactive' | 'pending'
+
+export interface Extension {
+  guid: string
   name: string
-  username: string
-  role: 'member' | 'owner'
-  avatar: AvatarProps
+  hostname: string
+  status: ExtensionStatus
+  lastSeen: string
 }
 
 export interface Stat {

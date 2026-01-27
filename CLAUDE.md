@@ -32,7 +32,7 @@ app/
 ├── pages/           # File-based routing (index, settings/*)
 ├── components/      # Organized by feature (home/, settings/)
 ├── composables/     # useDashboard.ts - keyboard shortcuts
-├── types/           # TypeScript interfaces (User, Member, Stat, Sale, etc.)
+├── types/           # TypeScript interfaces (User, Extension, Stat, Sale, etc.)
 └── utils/           # Helper functions
 
 server/api/          # Nitro API routes returning mock data
@@ -53,7 +53,12 @@ server/api/          # Nitro API routes returning mock data
 ### API Routes
 
 All endpoints in `server/api/` return hardcoded mock data:
-- `members.ts` - Team members
+- `extensions.ts` - AIAL extensions (installed on enterprise workstations)
+
+### Business Concepts
+
+- **Entreprise:** The company/organization using the dashboard
+- **Extensions AIAL:** Browser extensions installed on workstations that report data back to the dashboard (identified by GUID)
 
 ### ESLint Rules
 
