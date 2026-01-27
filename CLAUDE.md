@@ -29,10 +29,10 @@ This is a **Nuxt 4 dashboard application** using Vue 3 Composition API with Type
 
 ```
 app/
-├── pages/           # File-based routing (index, customers, inbox, settings/*)
-├── components/      # Organized by feature (home/, customers/, inbox/, settings/)
+├── pages/           # File-based routing (index, customers, settings/*)
+├── components/      # Organized by feature (home/, customers/, settings/)
 ├── composables/     # useDashboard.ts - shared state, keyboard shortcuts
-├── types/           # TypeScript interfaces (User, Mail, Member, Stat, Sale, etc.)
+├── types/           # TypeScript interfaces (User, Member, Stat, Sale, etc.)
 └── utils/           # Helper functions
 
 server/api/          # Nitro API routes returning mock data
@@ -50,13 +50,12 @@ server/api/          # Nitro API routes returning mock data
 
 **Data Tables:** TanStack Table integration with column filtering, sorting, pagination, row selection, and column visibility toggling.
 
-**Keyboard Shortcuts:** Defined in `useDashboard.ts` - g-h (home), g-i (inbox), g-c (customers), g-s (settings), n (notifications).
+**Keyboard Shortcuts:** Defined in `useDashboard.ts` - g-h (home), g-c (customers), g-s (settings), n (notifications).
 
 ### API Routes
 
 All endpoints in `server/api/` return hardcoded mock data:
 - `customers.ts` - Customer list
-- `mails.ts` - Mail/inbox data
 - `members.ts` - Team members
 - `notifications.ts` - Notification list
 
