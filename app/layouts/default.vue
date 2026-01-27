@@ -40,12 +40,6 @@ const links = [[{
       open.value = false
     }
   }, {
-    label: 'Notifications',
-    to: '/settings/notifications',
-    onSelect: () => {
-      open.value = false
-    }
-  }, {
     label: 'Security',
     to: '/settings/security',
     onSelect: () => {
@@ -148,7 +142,5 @@ onMounted(async () => {
     <UDashboardSearch :groups="groups" />
 
     <slot />
-
-    <NotificationsSlideover />
   </UDashboardGroup>
 </template>

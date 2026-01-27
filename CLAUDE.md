@@ -42,7 +42,7 @@ server/api/          # Nitro API routes returning mock data
 
 **Server/Client Component Split:** Components that need client-side only rendering use `.client.vue` / `.server.vue` suffix pattern (see `HomeChart`).
 
-**Shared Composables:** `useDashboard()` uses `createSharedComposable()` from VueUse for global state (notifications slideover, keyboard shortcuts).
+**Shared Composables:** `useDashboard()` uses `createSharedComposable()` from VueUse for keyboard shortcuts.
 
 **Data Fetching:** Uses `useFetch()` with lazy loading for API calls.
 
@@ -50,14 +50,13 @@ server/api/          # Nitro API routes returning mock data
 
 **Data Tables:** TanStack Table integration with column filtering, sorting, pagination, row selection, and column visibility toggling.
 
-**Keyboard Shortcuts:** Defined in `useDashboard.ts` - g-h (home), g-c (customers), g-s (settings), n (notifications).
+**Keyboard Shortcuts:** Defined in `useDashboard.ts` - g-h (home), g-c (customers), g-s (settings).
 
 ### API Routes
 
 All endpoints in `server/api/` return hardcoded mock data:
 - `customers.ts` - Customer list
 - `members.ts` - Team members
-- `notifications.ts` - Notification list
 
 ### ESLint Rules
 
