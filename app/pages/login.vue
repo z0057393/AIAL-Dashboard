@@ -11,7 +11,9 @@ const toast = useToast()
 
 const schema = z.object({
   email: z.string().email('Email invalide'),
-  password: z.string().min(6, 'Le mot de passe doit contenir au moins 6 caractères')
+  password: z
+    .string()
+    .min(6, 'Le mot de passe doit contenir au moins 6 caractères')
 })
 
 type Schema = z.output<typeof schema>
@@ -25,20 +27,12 @@ const loading = ref(false)
 
 async function onSubmit(event: FormSubmitEvent<Schema>) {
   loading.value = true
-  try {
-    await login(event.data.email, event.data.password)
-    toast.add({
-      title: 'Connexion réussie',
-      color: 'success'
-    })
-  } catch {
-    toast.add({
-      title: 'Erreur de connexion',
-      color: 'error'
-    })
-  } finally {
-    loading.value = false
-  }
+  login(event.data.email, event.data.password)
+  toast.add({
+    title: 'Connexion réussie',
+    color: 'success'
+  })
+  await navigateTo('/')
 }
 </script>
 
