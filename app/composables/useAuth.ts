@@ -2,14 +2,14 @@ export const useAuth = () => {
   const user = useState<{ email: string } | null>('auth-user', () => null)
   const isAuthenticated = computed(() => !!user.value)
 
-  const login = (email: string, _password: string) => {
+  const login = async (email: string, _password: string) => {
     user.value = { email }
-    return navigateTo('/')
+    await navigateTo('/')
   }
 
-  const logout = () => {
+  const logout = async () => {
     user.value = null
-    return navigateTo('/login')
+    await navigateTo('/login')
   }
 
   return {
