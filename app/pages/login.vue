@@ -64,6 +64,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
               placeholder="vous@exemple.com"
               icon="i-lucide-mail"
               size="lg"
+              class="w-full"
             />
           </UFormField>
 
@@ -74,6 +75,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
               placeholder="••••••••"
               icon="i-lucide-lock"
               size="lg"
+              class="w-full"
             />
           </UFormField>
 
