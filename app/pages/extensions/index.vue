@@ -48,15 +48,24 @@ const filteredAndSortedExtensions = computed(() => {
 </script>
 
 <template>
-  <div>
+  <div class="space-y-6">
     <UPageCard
       title="Extensions AIAL"
       description="Gérez les extensions installées sur les postes de votre entreprise."
       variant="naked"
       orientation="horizontal"
-      class="mb-4"
     />
 
+    <!-- Stats -->
+    <ExtensionsStats :extensions="extensions" />
+
+    <!-- Charts -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <ExtensionsDonutChart :extensions="extensions" />
+      <ExtensionsBarChart :extensions="extensions" />
+    </div>
+
+    <!-- Liste -->
     <UPageCard
       variant="subtle"
       :ui="{ container: 'p-0 sm:p-0 gap-y-0', wrapper: 'items-stretch', header: 'p-4 mb-0 border-b border-default' }"
@@ -67,7 +76,6 @@ const filteredAndSortedExtensions = computed(() => {
             v-model="q"
             icon="i-lucide-search"
             placeholder="Rechercher une extension..."
-            autofocus
             class="flex-1"
           />
           <div class="flex gap-2">
