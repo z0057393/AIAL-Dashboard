@@ -94,7 +94,7 @@ function getStatusLabel(status: Word['status']) {
           <p class="text-highlighted font-medium truncate">
             {{ word.mot }}
           </p>
-          <p class="text-muted truncate text-xs">
+          <p v-if="mode === 'active'" class="text-muted truncate text-xs">
             {{ word.occurrence }} occurrence{{ word.occurrence > 1 ? 's' : '' }}
           </p>
         </div>
@@ -110,6 +110,7 @@ function getStatusLabel(status: Word['status']) {
         </UBadge>
 
         <UBadge
+          v-if="mode === 'active'"
           color="primary"
           variant="subtle"
           class="tabular-nums"

@@ -5,13 +5,21 @@ const { data: words } = await useFetch<Word[]>('/api/words', { default: () => []
 const { getManagedWords } = useWords()
 
 const q = ref('')
+const statusFilter = ref<'all' | 'ignored' | 'blacklisted'>('all')
+
+const filterOptions = [
+  { label: 'Tous', value: 'all' },
+  { label: 'Ignorés', value: 'ignored' },
+  { label: 'Blacklistés', value: 'blacklisted' }
+]
 
 const managedWords = computed(() => {
   const managed = getManagedWords(words.value)
-  const filtered = managed.filter((word) => {
-    return word.mot.search(new RegExp(q.value, 'i')) !== -1
+  return managed.filter((word) => {
+    const matchesSearch = word.mot.search(new RegExp(q.value, 'i')) !== -1
+    const matchesFilter = statusFilter.value === 'all' || word.status === statusFilter.value
+    return matchesSearch && matchesFilter
   })
-  return filtered.sort((a, b) => b.occurrence - a.occurrence)
 })
 
 const ignoredWords = computed(() => managedWords.value.filter(w => w.status === 'ignored'))
@@ -33,13 +41,21 @@ const blacklistedWords = computed(() => managedWords.value.filter(w => w.status 
       :ui="{ container: 'p-0 sm:p-0 gap-y-0', wrapper: 'items-stretch', header: 'p-4 mb-0 border-b border-default' }"
     >
       <template #header>
-        <UInput
-          v-model="q"
-          icon="i-lucide-search"
-          placeholder="Rechercher un mot..."
-          autofocus
-          class="w-full"
-        />
+        <div class="flex gap-3 w-full">
+          <UInput
+            v-model="q"
+            icon="i-lucide-search"
+            placeholder="Rechercher un mot..."
+            autofocus
+            class="flex-1"
+          />
+          <USelectMenu
+            v-model="statusFilter"
+            :items="filterOptions"
+            value-key="value"
+            class="w-40"
+          />
+        </div>
       </template>
 
       <div v-if="managedWords.length === 0" class="p-8 text-center text-muted">
