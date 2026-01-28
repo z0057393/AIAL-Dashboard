@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Extension } from '~/types'
+import type { StatItem } from '~/components/organisms/stats/StatsRow.vue'
 
 const { data: extensions } = await useFetch<Extension[]>('/api/extensions', { default: () => [] })
 
@@ -17,6 +18,33 @@ const orderOptions = [
   { label: 'Croissant', value: 'asc' },
   { label: 'Décroissant', value: 'desc' }
 ]
+
+const stats = computed<StatItem[]>(() => {
+  const total = extensions.value.length
+  const withBlacklisted = extensions.value.filter(e => e.blacklistedWordsCount > 0).length
+  const percentageWithBlacklisted = total > 0 ? Math.round((withBlacklisted / total) * 100) : 0
+
+  return [
+    {
+      title: 'Extensions installées',
+      icon: 'i-lucide-puzzle',
+      value: total,
+      color: 'primary'
+    },
+    {
+      title: 'Avec mots blacklistés',
+      icon: 'i-lucide-alert-triangle',
+      value: withBlacklisted,
+      color: 'error'
+    },
+    {
+      title: 'Taux de détection',
+      icon: 'i-lucide-percent',
+      value: `${percentageWithBlacklisted}%`,
+      color: percentageWithBlacklisted > 50 ? 'error' : percentageWithBlacklisted > 25 ? 'warning' : 'success'
+    }
+  ]
+})
 
 const filteredAndSortedExtensions = computed(() => {
   let result = extensions.value.filter((extension) => {
@@ -57,12 +85,12 @@ const filteredAndSortedExtensions = computed(() => {
     />
 
     <!-- Stats -->
-    <ExtensionsStats :extensions="extensions" />
+    <StatsRow :stats="stats" />
 
     <!-- Charts -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      <ExtensionsDonutChart :extensions="extensions" />
-      <ExtensionsBarChart :extensions="extensions" />
+      <DonutChart :extensions="extensions" />
+      <BarChart :extensions="extensions" />
     </div>
 
     <!-- Liste -->

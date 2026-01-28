@@ -31,7 +31,7 @@ const { data } = await useAsyncData('blacklisted-detections', async () => {
     const date = new Date(currentDate.getTime() - hoursAgo * 3600000)
 
     detections.push({
-      mot: sampleBlacklistedWords[i],
+      mot: sampleBlacklistedWords[i]!,
       detections: randomInt(1, 50),
       lastSeen: date.toISOString()
     })
