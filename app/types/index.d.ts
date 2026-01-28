@@ -44,3 +44,11 @@ export interface Range {
   start: Date
   end: Date
 }
+
+export type WordStatus = 'active' | 'ignored' | 'blacklisted'
+
+export interface Word {
+  mot: string
+  occurrence: number
+  status?: WordStatus
+}

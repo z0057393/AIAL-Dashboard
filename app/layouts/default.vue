@@ -14,6 +14,26 @@ const links = [[{
     open.value = false
   }
 }, {
+  label: 'Mots',
+  to: '/words',
+  icon: 'i-lucide-text',
+  defaultOpen: true,
+  type: 'trigger',
+  children: [{
+    label: 'Liste des mots',
+    to: '/words',
+    exact: true,
+    onSelect: () => {
+      open.value = false
+    }
+  }, {
+    label: 'Mots gérés',
+    to: '/words/managed',
+    onSelect: () => {
+      open.value = false
+    }
+  }]
+}, {
   label: 'Settings',
   to: '/settings',
   icon: 'i-lucide-settings',
