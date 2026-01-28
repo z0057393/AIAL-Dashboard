@@ -78,12 +78,12 @@ const template = (d: DataRecord) => `${formatDate(d.date)}: ${d.count} détectio
       <VisLine
         :x="x"
         :y="y"
-        color="var(--ui-primary)"
+        color="var(--ui-error)"
       />
       <VisArea
         :x="x"
         :y="y"
-        color="var(--ui-primary)"
+        color="var(--ui-error)"
         :opacity="0.1"
       />
 
@@ -94,7 +94,7 @@ const template = (d: DataRecord) => `${formatDate(d.date)}: ${d.count} détectio
       />
 
       <VisCrosshair
-        color="var(--ui-primary)"
+        color="var(--ui-error)"
         :template="template"
       />
 
@@ -105,7 +105,7 @@ const template = (d: DataRecord) => `${formatDate(d.date)}: ${d.count} détectio
 
 <style scoped>
 .unovis-xy-container {
-  --vis-crosshair-line-stroke-color: var(--ui-primary);
+  --vis-crosshair-line-stroke-color: var(--ui-error);
   --vis-crosshair-circle-stroke-color: var(--ui-bg);
 
   --vis-axis-grid-color: var(--ui-border);

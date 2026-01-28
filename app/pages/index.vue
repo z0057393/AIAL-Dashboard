@@ -7,35 +7,30 @@ const baseStats = [{
   title: 'Extensions',
   icon: 'i-lucide-puzzle',
   minValue: 400,
-  maxValue: 1000,
-  minVariation: -15,
-  maxVariation: 25
+  maxValue: 1000
 }, {
   title: 'Nouveaux mots',
   icon: 'i-lucide-text',
+  color: 'warning' as const,
   minValue: 50,
-  maxValue: 200,
-  minVariation: -10,
-  maxVariation: 30
+  maxValue: 200
 }, {
   title: 'Mots blacklistés',
   icon: 'i-lucide-ban',
+  color: 'error' as const,
   minValue: 10,
-  maxValue: 50,
-  minVariation: -5,
-  maxVariation: 15
+  maxValue: 50
 }]
 
 const { data: stats } = await useAsyncData<StatItem[]>('stats', async () => {
   return baseStats.map((stat) => {
     const value = randomInt(stat.minValue, stat.maxValue)
-    const variation = randomInt(stat.minVariation, stat.maxVariation)
 
     return {
       title: stat.title,
       icon: stat.icon,
       value,
-      variation
+      color: stat.color
     }
   })
 }, {
