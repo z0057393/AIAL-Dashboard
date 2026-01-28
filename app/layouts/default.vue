@@ -14,6 +14,13 @@ const links = [[{
     open.value = false
   }
 }, {
+  label: 'Extensions',
+  icon: 'i-lucide-puzzle',
+  to: '/extensions',
+  onSelect: () => {
+    open.value = false
+  }
+}, {
   label: 'Mots',
   to: '/words',
   icon: 'i-lucide-text',
@@ -43,12 +50,6 @@ const links = [[{
     label: 'General',
     to: '/settings',
     exact: true,
-    onSelect: () => {
-      open.value = false
-    }
-  }, {
-    label: 'Extensions',
-    to: '/settings/extensions',
     onSelect: () => {
       open.value = false
     }

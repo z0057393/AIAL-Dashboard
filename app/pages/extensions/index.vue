@@ -45,7 +45,7 @@ const filteredExtensions = computed(() => {
         />
       </template>
 
-      <SettingsExtensionsList :extensions="filteredExtensions" />
+      <ExtensionsList :extensions="filteredExtensions" />
     </UPageCard>
   </div>
 </template>

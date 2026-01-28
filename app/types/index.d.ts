@@ -20,6 +20,7 @@ export interface Extension {
   hostname: string
   status: ExtensionStatus
   lastSeen: string
+  blacklistedWordsCount: number
 }
 
 export interface Stat {

@@ -8,9 +8,11 @@ defineProps<{
 
 const items = [{
   label: 'Voir détails',
+  icon: 'i-lucide-eye',
   onSelect: () => console.log('View details')
 }, {
   label: 'Désactiver',
+  icon: 'i-lucide-power-off',
   color: 'error' as const,
   onSelect: () => console.log('Disable extension')
 }] satisfies DropdownMenuItem[]
@@ -74,9 +76,24 @@ function formatLastSeen(dateStr: string) {
       </div>
 
       <div class="flex items-center gap-3">
-        <div class="text-xs text-muted hidden sm:block">
-          {{ formatLastSeen(extension.lastSeen) }}
+        <div class="text-xs text-muted hidden md:flex flex-col items-end gap-0.5">
+          <span>Dernière activité : {{ formatLastSeen(extension.lastSeen) }}</span>
+          <span v-if="extension.blacklistedWordsCount > 0" class="text-error">
+            {{ extension.blacklistedWordsCount }} mot{{ extension.blacklistedWordsCount > 1 ? 's' : '' }} blacklisté{{ extension.blacklistedWordsCount > 1 ? 's' : '' }}
+          </span>
+          <span v-else class="text-success">
+            Aucun mot blacklisté
+          </span>
         </div>
+
+        <UBadge
+          v-if="extension.blacklistedWordsCount > 0"
+          color="error"
+          variant="subtle"
+          class="tabular-nums"
+        >
+          {{ extension.blacklistedWordsCount }}
+        </UBadge>
 
         <UBadge
           :color="getStatusColor(extension.status)"
