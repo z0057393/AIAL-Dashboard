@@ -15,8 +15,8 @@ function formatCurrency(value: number): string {
 }
 
 const baseStats = [{
-  title: 'Users',
-  icon: 'i-lucide-users',
+  title: 'Extensions',
+  icon: 'i-lucide-puzzle',
   minValue: 400,
   maxValue: 1000,
   minVariation: -15,
