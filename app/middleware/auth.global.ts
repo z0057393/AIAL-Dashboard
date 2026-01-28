@@ -1,7 +1,9 @@
+const publicPages = ['/login', '/reset-password']
+
 export default defineNuxtRouteMiddleware((to) => {
   const { isAuthenticated } = useAuth()
 
-  if (to.path === '/login') {
+  if (publicPages.includes(to.path)) {
     if (isAuthenticated.value) {
       return navigateTo('/')
     }
