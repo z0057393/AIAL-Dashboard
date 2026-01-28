@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const { range, period } = usePeriod()
 </script>
 
 <template>
@@ -9,6 +10,13 @@
           <UDashboardSidebarCollapse />
         </template>
       </UDashboardNavbar>
+
+      <UDashboardToolbar>
+        <template #left>
+          <HomeDateRangePicker v-model="range" class="-ms-1" />
+          <HomePeriodSelect v-model="period" :range="range" />
+        </template>
+      </UDashboardToolbar>
     </template>
 
     <template #body>
