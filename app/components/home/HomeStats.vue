@@ -6,14 +6,6 @@ const props = defineProps<{
   range: Range
 }>()
 
-function formatCurrency(value: number): string {
-  return value.toLocaleString('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    maximumFractionDigits: 0
-  })
-}
-
 const baseStats = [{
   title: 'Extensions',
   icon: 'i-lucide-puzzle',
@@ -22,25 +14,17 @@ const baseStats = [{
   minVariation: -15,
   maxVariation: 25
 }, {
-  title: 'Conversions',
-  icon: 'i-lucide-chart-pie',
-  minValue: 1000,
-  maxValue: 2000,
+  title: 'Nouveaux mots',
+  icon: 'i-lucide-text',
+  minValue: 50,
+  maxValue: 200,
   minVariation: -10,
-  maxVariation: 20
+  maxVariation: 30
 }, {
-  title: 'Revenue',
-  icon: 'i-lucide-circle-dollar-sign',
-  minValue: 200000,
-  maxValue: 500000,
-  minVariation: -20,
-  maxVariation: 30,
-  formatter: formatCurrency
-}, {
-  title: 'Orders',
-  icon: 'i-lucide-shopping-cart',
-  minValue: 100,
-  maxValue: 300,
+  title: 'Mots blacklistés',
+  icon: 'i-lucide-ban',
+  minValue: 10,
+  maxValue: 50,
   minVariation: -5,
   maxVariation: 15
 }]
@@ -53,7 +37,7 @@ const { data: stats } = await useAsyncData<Stat[]>('stats', async () => {
     return {
       title: stat.title,
       icon: stat.icon,
-      value: stat.formatter ? stat.formatter(value) : value,
+      value,
       variation
     }
   })
@@ -64,7 +48,7 @@ const { data: stats } = await useAsyncData<Stat[]>('stats', async () => {
 </script>
 
 <template>
-  <UPageGrid class="lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-px">
+  <UPageGrid class="lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-px">
     <UPageCard
       v-for="(stat, index) in stats"
       :key="index"
