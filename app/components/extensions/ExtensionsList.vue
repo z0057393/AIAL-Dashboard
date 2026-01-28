@@ -10,34 +10,7 @@ const items = [{
   label: 'Voir détails',
   icon: 'i-lucide-eye',
   onSelect: () => console.log('View details')
-}, {
-  label: 'Désactiver',
-  icon: 'i-lucide-power-off',
-  color: 'error' as const,
-  onSelect: () => console.log('Disable extension')
 }] satisfies DropdownMenuItem[]
-
-function getStatusColor(status: Extension['status']) {
-  switch (status) {
-    case 'active':
-      return 'success'
-    case 'inactive':
-      return 'error'
-    case 'pending':
-      return 'warning'
-  }
-}
-
-function getStatusLabel(status: Extension['status']) {
-  switch (status) {
-    case 'active':
-      return 'Actif'
-    case 'inactive':
-      return 'Inactif'
-    case 'pending':
-      return 'En attente'
-  }
-}
 
 function formatLastSeen(dateStr: string) {
   const date = new Date(dateStr)
@@ -93,13 +66,6 @@ function formatLastSeen(dateStr: string) {
           class="tabular-nums"
         >
           {{ extension.blacklistedWordsCount }}
-        </UBadge>
-
-        <UBadge
-          :color="getStatusColor(extension.status)"
-          variant="subtle"
-        >
-          {{ getStatusLabel(extension.status) }}
         </UBadge>
 
         <UDropdownMenu :items="items" :content="{ align: 'end' }">
